@@ -1,0 +1,161 @@
+<!-- 🔥 FORMULARIO + RESPONSABILIDAD TOTAL -->
+<div class="form-container">
+  <div class="card-servicio">
+    <h2>📋 Solicitar Servicio</h2>
+
+    <!-- 💰 PRECIO AUTOMÁTICO -->
+    <div class="precio-display" *ngIf="precioSeleccionado() > 0">
+      <span class="emoji">💰</span>
+      <strong>${{ precioSeleccionado() }} MXN</strong>
+    </div>
+
+    <!-- 📝 FORMULARIO PRINCIPAL -->
+    <form [formGroup]="formSolicitud">
+      <div class="input-group">
+        <label>👤 Nombre Completo *</label>
+        <input formControlName="cliente" type="text" placeholder="Juan Pérez" />
+        <div
+          class="error"
+          *ngIf="formSolicitud.get('cliente')?.invalid && formSolicitud.get('cliente')?.touched"
+        >
+          Nombre requerido
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <label>📧 Email *</label>
+          <input formControlName="email" type="email" placeholder="cliente@email.com" />
+        </div>
+        <div class="input-group">
+          <label>📱 WhatsApp * (10 dígitos)</label>
+          <input formControlName="telefono" type="tel" placeholder="2212345678" />
+          <span
+            class="telefono-status"
+            [class.telefono-ok]="validarTelefono()"
+            [class.telefono-error]="!validarTelefono() && formSolicitud.get('telefono')?.value"
+          >
+            {{ validarTelefono() ? '✅ VERIFICADO' : '❌ 10 dígitos' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <label>🔧 Servicio *</label>
+          <select formControlName="servicio">
+            <option value="">Selecciona...</option>
+            <option *ngFor="let servicio of servicios" [value]="servicio">{{ servicio }}</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>📅 Fecha *</label>
+          <input formControlName="fecha" type="date" [min]="minFechaStr" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>🕒 Hora *</label>
+        <input formControlName="hora" type="time" />
+      </div>
+
+      <div class="input-group">
+        <label>📝 Descripción * (mínimo 10 caracteres)</label>
+        <textarea
+          formControlName="descripcion"
+          rows="4"
+          placeholder="Ej: Mi laptop no enciende, hace ruido..."
+        ></textarea>
+        <div
+          class="error"
+          *ngIf="
+            formSolicitud.get('descripcion')?.invalid && formSolicitud.get('descripcion')?.touched
+          "
+        >
+          Descripción mínima 10 caracteres
+        </div>
+      </div>
+
+      <!-- 🚫 RESPONSABILIDAD OBLIGATORIA -->
+      <div class="responsabilidad-section">
+        <label class="checkbox-responsabilidad">
+          <input
+            type="checkbox"
+            [(ngModel)]="aceptoResponsabilidad"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <span class="checkmark"></span>
+          <strong>⚠️ COMPROMISO FORMAL:</strong> Cancelaré 24h antes o pagaré 50% de multa
+        </label>
+        <p class="aviso-responsabilidad">
+          <strong>SIN ESTE CHECK → NO SE GENERA CÓDIGO</strong>
+        </p>
+      </div>
+
+      <!-- 🔑 PASO 1: GENERAR CÓDIGO -->
+      <button
+        type="button"
+        (click)="generarCodigo()"
+        [disabled]="!formCompleto()"
+        class="btn-generar"
+      >
+        {{
+          formCompleto() ? '🔑 GENERAR CÓDIGO VERIFICACIÓN' : '❌ Completa formulario + checkbox'
+        }}
+      </button>
+    </form>
+
+    <!-- 🔑 PASO 2: CÓDIGO VISUAL (OCULTO hasta generar) -->
+    <div class="codigo-container" *ngIf="mostrarCodigo">
+      <h3>📱 COPIA ESTE CÓDIGO:</h3>
+      <div class="codigo-grande">{{ codigoGenerado }}</div>
+      <p class="instruccion-codigo">Ingresa abajo para confirmar tu cita:</p>
+      <div class="input-codigo-group">
+        <input
+          [(ngModel)]="codigoVerificacion"
+          maxlength="4"
+          placeholder="4782"
+          class="input-codigo"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <button type="button" (click)="verificarCodigo()" class="btn-confirmar-final">
+          ✅ CONFIRMAR CITA
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-confirmacion" *ngIf="nuevaCita">
+      <div class="confirmacion-card">
+        <h2>🎉 ¡CITA RESERVADA!</h2>
+
+        <!-- 🔍 ID Y CÓDIGO GRANDES -->
+        <div class="id-codigo-container">
+          <div class="id-grande">
+            <span class="label-id">ID CITA</span>
+            <strong>{{ nuevaCita.id }}</strong>
+          </div>
+          <div class="codigo-grande-final">
+            <span class="label-codigo">CÓDIGO</span>
+            <strong>{{ nuevaCita.codigoVerificacion }}</strong>
+          </div>
+        </div>
+
+        <div class="detalles-confirmacion">
+          <p>
+            👤 <strong>{{ nuevaCita.cliente }}</strong>
+          </p>
+          <p>🔧 {{ nuevaCita.servicio }}</p>
+          <p>📅 {{ nuevaCita.fecha }} {{ nuevaCita.hora }}</p>
+          <p>
+            💰 <strong>${{ nuevaCita.costo }} MXN</strong>
+          </p>
+        </div>
+        <p class="instruccion">
+          🔍 <strong>GUARDAR ID</strong> para rastrear en
+          <a routerLink="/cliente/citas" class="link-citas">Mis Citas</a>
+        </p>
+        <button type="button" (click)="irMisCitas()" class="btn-ir-citas">📅 Ver Mis Citas</button>
+      </div>
+    </div>
+  </div>
+</div>

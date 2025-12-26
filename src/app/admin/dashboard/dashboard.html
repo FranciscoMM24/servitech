@@ -1,0 +1,141 @@
+<!-- 🔐 MODAL LOGIN ADMIN -->
+<div class="login-modal" *ngIf="mostrarLogin">
+  <div class="login-card">
+    <h3>🔐 Acceso Administrador</h3>
+    <input
+      [(ngModel)]="password"
+      type="password"
+      placeholder="Contraseña admin"
+      class="input-password"
+      (keyup.enter)="verificarAdmin()"
+    />
+    <div class="login-actions">
+      <button (click)="verificarAdmin()" class="btn-login">Entrar</button>
+      <button (click)="irClienteCitas()" class="btn-cancelar">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ⚙️ DASHBOARD ADMIN COMPLETO -->
+<div class="dashboard-container" *ngIf="esAdminValido">
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h2>⚙️ Panel de Administración ServiTech</h2>
+    <button (click)="logoutAdmin()" class="btn-logout">🚪 Salir</button>
+  </div>
+
+  <!-- 📊 ESTADÍSTICAS -->
+  <div class="stats-grid">
+    <div class="stat-card total">
+      <h3>{{ stats.total || 0 }}</h3>
+      <p>Total Citas</p>
+    </div>
+    <div class="stat-card pendientes">
+      <h3>{{ stats.pendientes || 0 }}</h3>
+      <p>Pendientes</p>
+    </div>
+    <div class="stat-card ingresos">
+      <h3>${{ stats.ingresosPendientes || 0 }}</h3>
+      <p>Ingresos Pendientes</p>
+    </div>
+  </div>
+
+  <!-- ✏️ MODAL EDICIÓN -->
+  <div class="modal-edicion" *ngIf="editarCita">
+    <div class="modal-content">
+      <h3>
+        ✏️ Editar Cita <strong>{{ editarCita.id }}</strong>
+      </h3>
+      <textarea
+        [(ngModel)]="notaAdmin"
+        rows="4"
+        placeholder="Actualiza descripción/notas del servicio..."
+      >
+      </textarea>
+      <div class="modal-actions">
+        <button (click)="guardarEdicion()" class="btn-guardar">💾 Guardar Cambios</button>
+        <button (click)="cancelarEdicion()" class="btn-cancelar">❌ Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📋 TABLA COMPLETA CON CÓDIGO VERIFICACIÓN -->
+  <div class="tabla-container">
+    <h3>
+      Todas las Citas <span class="contador">({{ citas.length }} total)</span>
+    </h3>
+    <div class="tabla">
+      <!-- HEADER CON CÓDIGO -->
+      <div class="tabla-header">
+        <span>ID</span>
+        <span>CÓDIGO</span>
+        <!-- ✅ NUEVA COLUMNA -->
+        <span>Cliente</span>
+        <span>Servicio</span>
+        <span>Fecha/Hora</span>
+        <span>Costo</span>
+        <span>Estado</span>
+        <span>Acciones</span>
+      </div>
+
+      <!-- FILAS CON CÓDIGO -->
+      <div class="tabla-row" *ngFor="let cita of citas">
+        <span class="id"
+          ><strong>{{ cita.id }}</strong></span
+        >
+        <span class="codigo">{{ cita.codigoVerificacion || 'N/A' }}</span>
+        <!-- ✅ CÓDIGO NUEVO -->
+        <span class="cliente">{{ cita.cliente }}</span>
+        <span class="servicio">{{ cita.servicio }}</span>
+        <span class="fecha">{{ cita.fecha }} {{ cita.hora }}</span>
+        <span class="precio">${{ cita.costo }}</span>
+        <span class="estado" [ngClass]="cita.estado">{{ cita.estado | titlecase }}</span>
+        <span class="acciones">
+          <!-- 💳 PAGAR -->
+          <button
+            *ngIf="!cita.pagado"
+            (click)="marcarPagada(cita.id)"
+            class="btn-pagar"
+            title="Marcar como Pagada"
+          >
+            💳
+          </button>
+
+          <!-- 📱 WHATSAPP STATUS -->
+          <button
+            (click)="enviarWhatsAppStatus(cita, 'confirmada')"
+            class="btn-confirmar"
+            title="Notificar CONFIRMADA"
+          >
+            ✅
+          </button>
+          <button
+            (click)="enviarWhatsAppStatus(cita, 'completada')"
+            class="btn-completado"
+            title="Notificar COMPLETADA"
+          >
+            🎉
+          </button>
+          <button
+            (click)="enviarWhatsAppStatus(cita, 'cancelada')"
+            class="btn-cancelar-wa"
+            title="Notificar CANCELADA"
+          >
+            ⚠️
+          </button>
+
+          <!-- ✉️ EMAIL -->
+          <button (click)="copiarEmailCliente(cita)" class="btn-email" title="Enviar Email">
+            ✉️
+          </button>
+
+          <!-- ✏️ EDITAR -->
+          <button (click)="editarCitaInicio(cita)" class="btn-editar" title="Editar">✏️</button>
+
+          <!-- 🗑️ ELIMINAR -->
+          <button (click)="eliminarCita(cita.id)" class="btn-eliminar" title="Eliminar">🗑️</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

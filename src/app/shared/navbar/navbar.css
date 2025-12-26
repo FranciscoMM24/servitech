@@ -1,0 +1,145 @@
+/* 🔥 NAVBAR 100% RESPONSIVA TECNOLÓGICA */
+.navbar {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%);
+  color: #f1f5f9;
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.4);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* ✨ ANIMACIÓN CYBER RESPONSIVA */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(59, 130, 246, 0.08) 25%,
+    rgba(16, 185, 129, 0.08) 50%,
+    rgba(251, 191, 36, 0.08) 75%,
+    transparent 100%
+  );
+  animation: cyberFlow 4s linear infinite;
+}
+
+@keyframes cyberFlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 💎 BRAND RESPONSIVO */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.nav-brand h1 {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(45deg, #60a5fa, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 4px rgba(96, 165, 250, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.7));
+  }
+}
+.nav-brand p {
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  margin: 0;
+  color: #cbd5e1;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 🚀 BOTONES RESPONSIVOS */
+.nav-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: #f1f5f9;
+  text-decoration: none;
+  padding: clamp(0.8rem, 2vw, 1rem) clamp(1rem, 3vw, 1.8rem);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  background: rgba(71, 85, 105, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.nav-links a:hover::before {
+  left: 100%;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.25);
+}
+
+/* 📱 MOBILE MENU */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem 1rem;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-links a {
+    flex: 1;
+    text-align: center;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .nav-brand p {
+    display: none;
+  }
+}

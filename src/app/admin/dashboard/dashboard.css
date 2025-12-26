@@ -1,0 +1,395 @@
+/* 🔥 DASHBOARD ADMIN - CSS COMPLETO Y RESPONSIVO */
+* {
+  box-sizing: border-box;
+}
+
+.login-modal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+.login-card h3 {
+  color: #1e293b;
+  margin-bottom: 2rem;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+.input-password {
+  width: 100%;
+  padding: 1.3rem 1.6rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  background: #fafbfc;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+.input-password:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+.login-actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.btn-login,
+.btn-cancelar {
+  flex: 1;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-login {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+.btn-cancelar {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+}
+
+/* DASHBOARD PRINCIPAL */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.dashboard-header h2 {
+  color: #1e293b;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin: 0;
+}
+.btn-logout {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* ESTADÍSTICAS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: all 0.3s;
+}
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+.stat-card h3 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+.stat-card.total h3 {
+  color: #3b82f6;
+}
+.stat-card.pendientes h3 {
+  color: #f59e0b;
+}
+.stat-card.ingresos h3 {
+  color: #10b981;
+}
+
+/* MODAL EDICIÓN */
+.modal-edicion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+.modal-content h3 {
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+.modal-content textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 120px;
+}
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.btn-guardar {
+  flex: 1;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ✅ TABLA 8 COLUMNAS RESPONSIVE */
+.tabla-container {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.tabla-container h3 {
+  color: #1e293b;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+}
+.contador {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.tabla {
+  overflow-x: auto;
+  border-radius: 20px;
+}
+
+/* ✅ HEADER 8 COLUMNAS */
+.tabla-header {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  padding: 1.5rem 1.5rem;
+  font-weight: 800;
+  color: #374151;
+  display: grid;
+  grid-template-columns: 110px 75px 160px 180px 130px 90px 100px 200px; /* ✅ 8 COLUMNAS */
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+/* ✅ FILAS 8 COLUMNAS */
+.tabla-row {
+  padding: 1.5rem 1.5rem;
+  display: grid;
+  grid-template-columns: 110px 75px 160px 180px 130px 90px 100px 200px; /* ✅ MISMO ORDEN */
+  gap: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s;
+  font-size: 0.92rem;
+}
+.tabla-row:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+.tabla-row:last-child {
+  border-bottom: none;
+}
+
+/* ✅ CLASES ESPECÍFICAS COLUMNAS */
+.id {
+  font-weight: 800;
+  color: #1e293b;
+}
+.codigo {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.cliente {
+  font-weight: 600;
+  color: #1e293b;
+}
+.servicio {
+  color: #059669;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fecha {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+.precio {
+  font-weight: 800;
+  color: #059669;
+  font-size: 1.15rem;
+}
+
+/* ESTADOS */
+.estado {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.estado.pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+.estado.confirmada {
+  background: #dcfce7;
+  color: #166534;
+}
+.estado.completada {
+  background: #d1fae5;
+  color: #065f46;
+}
+.estado.cancelada {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* 🔥 BOTONES ACCIONES */
+.acciones {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+}
+.acciones button {
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.acciones button:hover {
+  transform: scale(1.15);
+}
+
+.btn-pagar {
+  background: #10b981;
+  color: white;
+}
+.btn-confirmar {
+  background: #3b82f6;
+  color: white;
+}
+.btn-completado {
+  background: #f59e0b;
+  color: white;
+}
+.btn-cancelar-wa {
+  background: #f97316;
+  color: white;
+}
+.btn-email {
+  background: #6b7280;
+  color: white;
+}
+.btn-editar {
+  background: #8b5cf6;
+  color: white;
+}
+.btn-eliminar {
+  background: #ef4444;
+  color: white;
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 1200px) {
+  .tabla-header,
+  .tabla-row {
+    grid-template-columns: 100px 70px 140px 160px 120px 85px 95px 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .tabla-header,
+  .tabla-row {
+    grid-template-columns: 90px 65px 1fr 1fr 110px 80px 1fr;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    padding: 1.2rem 1rem;
+  }
+  .tabla-header span:nth-child(7),
+  .tabla-row span:nth-child(7) {
+    display: none;
+  } /* Ocultar Estado móvil */
+  .acciones button {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabla-header,
+  .tabla-row {
+    grid-template-columns: 80px 60px 1fr 1fr 1fr;
+  }
+  .tabla-header span:nth-child(6),
+  .tabla-row span:nth-child(6),
+  .tabla-header span:nth-child(7),
+  .tabla-row span:nth-child(7) {
+    display: none;
+  }
+}

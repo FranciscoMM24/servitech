@@ -1,0 +1,216 @@
+/* 🔥 CITAS TRACKER - CSS COMPLETO RESPONSIVO */
+* {
+  box-sizing: border-box;
+}
+
+.citas-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 🔍 TRACKER SECTION */
+.tracker-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  text-align: center;
+}
+
+.tracker-section h3 {
+  color: #1e293b;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+/* BUSCADOR */
+.buscador-publico {
+  display: flex;
+  max-width: 450px;
+  margin: 0 auto 2rem;
+  gap: 1rem;
+}
+
+.input-tracker {
+  flex: 1;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  background: #fafbfc;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.input-tracker:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.btn-buscar-mini {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+  min-width: 60px;
+}
+
+.btn-buscar-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* RESULTADO CITA */
+.cita-publica-resultado {
+  margin-top: 3rem;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cita-card-tracker {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.cita-card-tracker h4 {
+  margin: 0 0 1.5rem 0;
+  color: #1e293b;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.cita-card-tracker p {
+  margin: 1rem 0;
+  color: #475569;
+  font-size: 1.1rem;
+}
+
+.cita-card-tracker p strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+/* ESTADO BADGE */
+.estado-badge {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.estado-pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+.estado-confirmada {
+  background: #dcfce7;
+  color: #166534;
+}
+.estado-completada {
+  background: #d1fae5;
+  color: #065f46;
+}
+.estado-cancelada {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ❌ NO ENCONTRADO */
+.cita-publica-resultado.vacio {
+  margin-top: 2rem;
+}
+
+.cita-card-tracker .icono-vacio {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.cita-card-tracker h4.vacio-title {
+  color: #64748b;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.cita-card-tracker p.vacio-text {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+/* BOTÓN NUEVA BÚSQUEDA */
+.btn-buscar-nuevo {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn-buscar-nuevo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(107, 114, 128, 0.3);
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 768px) {
+  .citas-container {
+    padding: 1.5rem 1rem;
+  }
+  .tracker-section {
+    padding: 2rem 1.5rem;
+  }
+  .buscador-publico {
+    flex-direction: column;
+  }
+  .input-tracker,
+  .btn-buscar-mini {
+    width: 100%;
+  }
+  .cita-card-tracker {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tracker-section h3 {
+    font-size: 1.4rem;
+  }
+  .cita-card-tracker h4 {
+    font-size: 1.4rem;
+  }
+}

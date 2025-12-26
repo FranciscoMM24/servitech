@@ -1,0 +1,392 @@
+/* 🔥 FORMULARIO COMPACTO - PERFECTO EN TODO DISPOSITIVO + MODAL ID */
+.form-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+.card-servicio {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+.card-servicio h2 {
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* 💰 PRECIO COMPACTO */
+.precio-display {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 1rem;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+/* INPUTS COMPACTOS */
+.input-group {
+  margin-bottom: 1.2rem;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+}
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #fafbfc;
+  transition: all 0.3s;
+}
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* FILAS RESPONSIVAS */
+.input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* BOTÓN COMPACTO */
+.btn-generar {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  width: 100%;
+  margin: 2rem 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-generar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+.btn-generar:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* RESPONSABILIDAD + CÓDIGO */
+.responsabilidad-section {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  padding: 1.8rem;
+  border-radius: 16px;
+  border-left: 5px solid #f59e0b;
+  margin: 2rem 0;
+}
+
+.checkbox-responsabilidad {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.checkmark {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f59e0b;
+  border-radius: 6px;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+input[type='checkbox']:checked + .checkmark {
+  background: #f59e0b;
+}
+
+.aviso-responsabilidad {
+  margin-top: 1rem;
+  color: #92400e;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.codigo-container {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.codigo-grande {
+  font-size: 5rem;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 1.5rem 0;
+  letter-spacing: 0.4rem;
+}
+
+.input-codigo {
+  width: 180px;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 1rem 0.5rem;
+  font-weight: 700;
+}
+
+.btn-confirmar-final {
+  background: white;
+  color: #059669;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ✅ MODAL CONFIRMACIÓN MEJORADO - ID + CÓDIGO */
+.modal-confirmacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
+}
+
+.confirmacion-card {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  animation: modalPop 0.4s ease-out;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.confirmacion-card h2 {
+  color: #10b981;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* 🔍 ID + CÓDIGO GRANDES */
+.id-codigo-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.id-grande,
+.codigo-grande-final {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  min-width: 160px;
+  animation: bounceIn 0.6s ease-out;
+}
+
+.id-grande {
+  animation-delay: 0.1s;
+}
+.codigo-grande-final {
+  background: linear-gradient(135deg, #ff6b35, #f7931e) !important;
+  animation-delay: 0.2s;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.id-grande .label-id,
+.codigo-grande-final .label-codigo {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.id-grande strong,
+.codigo-grande-final strong {
+  font-size: 1.4rem;
+  font-weight: 900;
+  display: block;
+}
+
+.detalles-confirmacion {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.detalles-confirmacion p {
+  margin: 0.8rem 0;
+  color: #1e293b;
+}
+
+.instruccion-buscar {
+  background: #e0f2fe;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.link-citas {
+  color: #3b82f6;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn-ir-citas {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 1.2rem 3rem;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.btn-ir-citas:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+}
+
+.telefono-status {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.telefono-ok {
+  color: #10b981;
+}
+.telefono-error {
+  color: #ef4444;
+}
+
+/* 📱 RESPONSIVE TOTAL */
+@media (min-width: 481px) {
+  .input-row {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .input-group {
+    flex: 1;
+  }
+  .card-servicio {
+    padding: 2.5rem;
+    max-width: 600px;
+  }
+  .card-servicio h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .card-servicio {
+    max-width: 650px;
+    padding: 3rem;
+  }
+  .card-servicio h2 {
+    font-size: 2rem;
+  }
+  .precio-display {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-servicio {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-servicio {
+    max-width: 750px;
+  }
+}
