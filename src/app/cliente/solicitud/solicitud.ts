@@ -1,4 +1,4 @@
-// 🔥 FORMULARIO + RESPONSABILIDAD + ID AUTOMÁTICO
+// 🔥 FORMULARIO + RESPONSABILIDAD + ID DIRECTO (SIN CÓDIGO)
 import { Component, signal } from '@angular/core';
 import {
   FormBuilder,
@@ -8,9 +8,9 @@ import {
   FormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Booking } from '../../services/booking'; // ✅ CORREGIDO
+import { Booking } from '../../services/booking';
 import { Router } from '@angular/router';
-import { Cita } from '../../models/cita.models'; // ✅ CORREGIDO
+import { Cita } from '../../models/cita.models';
 
 @Component({
   selector: 'app-solicitud',
@@ -20,7 +20,6 @@ import { Cita } from '../../models/cita.models'; // ✅ CORREGIDO
   styleUrl: './solicitud.css',
 })
 export class Solicitud {
-  // ✅ COMPONENTE CORRECTO
   // 📋 SERVICIOS
   servicios = [
     'Reparación Laptop',
@@ -45,23 +44,17 @@ export class Solicitud {
   minFecha = new Date();
   minFechaStr = '';
 
-  // 🚫 RESPONSABILIDAD SISTEMA
+  // 🚫 RESPONSABILIDAD + ESTADO
   aceptoResponsabilidad = false;
-  mostrarCodigo = false;
-  codigoVerificacion = '';
-  codigoGenerado = '';
   nuevaCita: Cita | null = null;
+  whatsappEnviado = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private bookingService: Booking, // ✅ CORREGIDO NOMBRE
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private bookingService: Booking, private router: Router) {
     // Configurar fecha mínima
     this.minFecha.setDate(this.minFecha.getDate() + 1);
     this.minFechaStr = this.minFecha.toISOString().split('T')[0];
 
-    // 📋 Crear formulario
+    // 📋 Crear formulario SIN HORA
     this.formSolicitud = this.fb.group({
       cliente: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -69,13 +62,12 @@ export class Solicitud {
       servicio: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
       fecha: ['', Validators.required],
-      hora: ['', Validators.required],
     });
 
-    // 💰 Actualizar precio al cambiar servicio ✅ MÉTODO PÚBLICO
+    // 💰 Actualizar precio al cambiar servicio
     this.formSolicitud.get('servicio')?.valueChanges.subscribe((servicio) => {
       if (servicio) {
-        this.precioSeleccionado.set(this.getCostoServcio(servicio)); // ✅ MÉTODO CORRECTO
+        this.precioSeleccionado.set(this.getCostoServcio(servicio));
       } else {
         this.precioSeleccionado.set(0);
       }
@@ -86,11 +78,6 @@ export class Solicitud {
   formCompleto(): boolean {
     const formValido = this.formSolicitud.valid;
     const telefonoValido = this.validarTelefono();
-    console.log('🔍 DEBUG:', {
-      formValido,
-      telefonoValido,
-      aceptoResponsabilidad: this.aceptoResponsabilidad,
-    });
     return formValido && telefonoValido && this.aceptoResponsabilidad;
   }
 
@@ -100,7 +87,7 @@ export class Solicitud {
     return /^\d{10}$/.test(tel);
   }
 
-  // 💰 OBTENER COSTO (MÉTODO PÚBLICO)
+  // 💰 OBTENER COSTO
   getCostoServcio(servicio: string): number {
     const precios: Record<string, number> = {
       'Reparación Laptop': 850,
@@ -117,45 +104,49 @@ export class Solicitud {
     return precios[servicio as keyof typeof precios] || 0;
   }
 
-  // 🔑 GENERAR CÓDIGO VERIFICACIÓN
-  generarCodigo() {
-    console.log('🔑 BOTÓN PRESIONADO'); // DEBUG
+  // 🎉 CREAR CITA DIRECTA (1 CLICK)
+  crearCitaDirecta() {
     if (this.formCompleto()) {
-      this.codigoGenerado = Math.floor(Math.random() * 9000 + 1000).toString();
-      this.mostrarCodigo = true;
-      console.log('✅ CÓDIGO GENERADO:', this.codigoGenerado);
-      // NO alert() - se muestra visualmente
-    } else {
-      alert('❌ Completa TODOS los campos + marca checkbox + teléfono 10 dígitos');
+      const citaData = this.formSolicitud.value;
+
+      // ✅ CREAR CITA
+      this.nuevaCita = this.bookingService.crearCita(citaData);
+
+      // 📱 WHATSAPP AUTOMÁTICO
+      this.enviarWhatsAppConfirmacion(citaData);
+
+      // ✅ GUARDAR EMAIL
+      localStorage.setItem('clienteEmail', citaData.email);
+      console.log('🎉 Cita creada:', this.nuevaCita.id);
     }
   }
 
-  // ✅ VERIFICAR CÓDIGO + CREAR CITA
-  verificarCodigo() {
-    console.log('🔍 VERIFICANDO:', {
-      codigoVerificacion: this.codigoVerificacion,
-      codigoGenerado: this.codigoGenerado,
-    });
-    if (this.codigoVerificacion === this.codigoGenerado) {
-      const citaData = this.formSolicitud.value;
-      this.nuevaCita = this.bookingService.crearCita(citaData);
+  // 📱 WHATSAPP CONFIRMACIÓN (SIN CÓDIGO)
+  enviarWhatsAppConfirmacion(citaData: any) {
+    const mensaje = `🎉 *¡CITA RESERVADA CONFIRMADA!* 
 
-      alert(
-        `🎉 ¡CITA CONFIRMADA!\n\n` +
-          `📋 **ID: ${this.nuevaCita.id}**\n` +
-          `👤 ${this.nuevaCita.cliente}\n` +
-          `🔧 ${this.nuevaCita.servicio}\n` +
-          `📅 ${this.nuevaCita.fecha} ${this.nuevaCita.hora}\n` +
-          `💰 $${this.nuevaCita.costo} MXN\n\n` +
-          `🔍 **GUARDALO** para rastrear en /cliente/citas`
-      );
+📋 *ID CITA:* ${this.nuevaCita?.id}
 
-      localStorage.setItem('clienteEmail', citaData.email);
-      this.router.navigate(['/cliente/citas']);
-    } else {
-      alert('❌ Código incorrecto. Intenta de nuevo.');
-      this.codigoVerificacion = '';
-    }
+👤 ${citaData.cliente}
+🔧 ${citaData.servicio}
+📅 ${citaData.fecha}
+💰 *$${citaData.costo} MXN*
+
+✅ *Ya puedes rastrear tu cita en:*
+servitech.com/cliente/citas
+
+¡Gracias por confiar en ServiTech! ⭐`;
+
+    const telefono = citaData.telefono.replace(/[^0-9]/g, '');
+    const urlWhatsApp = `https://wa.me/52${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(urlWhatsApp, '_blank');
+    console.log('📱 WhatsApp enviado:', urlWhatsApp);
+
+    this.whatsappEnviado = true;
+    setTimeout(() => {
+      this.whatsappEnviado = false;
+    }, 4000);
   }
 
   // 🚪 IR A MIS CITAS
@@ -168,9 +159,6 @@ export class Solicitud {
     this.formSolicitud.reset();
     this.precioSeleccionado.set(0);
     this.aceptoResponsabilidad = false;
-    this.mostrarCodigo = false;
-    this.codigoVerificacion = '';
-    this.codigoGenerado = '';
     this.nuevaCita = null;
   }
 }

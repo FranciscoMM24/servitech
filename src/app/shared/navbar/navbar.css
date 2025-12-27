@@ -30,6 +30,13 @@
   );
   animation: cyberFlow 4s linear infinite;
 }
+.nav-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+.nav-title-link h1 {
+  margin: 0;
+}
 
 @keyframes cyberFlow {
   0% {

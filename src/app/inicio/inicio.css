@@ -1,0 +1,542 @@
+/* 🌌 CYBERPUNK GLOBAL - OPTIMIZADO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', 'Segoe UI', monospace;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 30%, #000 100%);
+  color: #e0e7ff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 255, 0, 0.04) 0%, transparent 50%);
+  animation: cyberMatrix 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes cyberMatrix {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+    opacity: 0.4;
+  }
+}
+
+/* 🧭 NAVBAR NEÓN - MÁS COMPACTA */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 20, 0.97);
+  backdrop-filter: blur(16px);
+  z-index: 1000;
+  padding: 0.7rem 2rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.3) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: neonSweep 4s infinite;
+}
+
+@keyframes neonSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-brand h1 {
+  font-size: 1.8rem; /* Reducido */
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: cyberGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes cyberGlow {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  100% {
+    filter: hue-rotate(90deg) brightness(1.1);
+  }
+}
+
+.nav-brand p {
+  font-size: 0.85rem;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: pulse 3s infinite;
+}
+
+.nav-links {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.nav-links a {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e0e7ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+}
+
+.nav-links a:hover {
+  border-color: #00ffff;
+  color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 🚀 HERO OPTIMIZADO - MÁS COMPACTO */
+.hero-container {
+  min-height: 100vh;
+  padding-top: 90px; /* Reducido */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 10%, rgba(0, 255, 255, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.1) 0%, transparent 40%);
+  animation: cyberFog 20s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes cyberFog {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px; /* Reducido */
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem; /* Reducido */
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem); /* Mucho más compacto */
+  font-weight: 900;
+  letter-spacing: 0.12em; /* Reducido */
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem; /* Reducido */
+  position: relative;
+  background: linear-gradient(45deg, #00ffff, #ffffff, #ff00ff);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: cyberWave 5s ease-in-out infinite;
+}
+
+@keyframes cyberWave {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #00ffff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1rem; /* Reducido */
+  color: rgba(224, 231, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 2.5rem; /* Reducido */
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem; /* Reducido */
+  flex-wrap: wrap;
+}
+
+/* 🔘 BOTONES COMPACTOS */
+.btn-primary,
+.btn-secondary,
+.btn-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem; /* Reducido */
+  border-radius: 30px;
+  font-size: 0.95rem; /* Reducido */
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #00ffff, #00b8ff);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #ff00ff, #ff4081);
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.btn-card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  color: #e0e7ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+}
+
+/* 💻 CARDS OPTIMIZADAS */
+.services-grid {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px; /* Reducido */
+  margin: 2.5rem auto 0; /* Reducido */
+  padding: 0 1.5rem 3rem; /* Reducido */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Reducido */
+  gap: 1.5rem; /* Reducido */
+}
+
+.service-card {
+  position: relative;
+  border-radius: 20px; /* Reducido */
+  overflow: hidden;
+  background: rgba(10, 10, 30, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px; /* Reducido */
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+  background-size: 300% 100%;
+  animation: scanLine 3s linear infinite;
+}
+
+@keyframes scanLine {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: #00ffff;
+  box-shadow: 0 25px 50px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.card-inner {
+  padding: 1.5rem; /* Reducido */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-front .icon {
+  font-size: 2.2rem; /* Reducido */
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 0 12px currentColor);
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.card-front h3 {
+  font-size: 1.2rem; /* Reducido */
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.card-front p {
+  font-size: 0.9rem;
+  color: rgba(224, 231, 255, 0.9);
+  line-height: 1.5;
+}
+
+.card-back {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 255, 255, 0.25);
+}
+
+.price-label {
+  font-size: 1.1rem; /* Reducido */
+  font-weight: 800;
+  color: #00ffff;
+  margin-bottom: 0.8rem;
+}
+
+.card-back ul {
+  margin-bottom: 1rem;
+}
+
+.card-back li {
+  padding: 0.4rem 0;
+  font-size: 0.85rem; /* Reducido */
+  color: #e0e7ff;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.card-back li:hover {
+  color: #00ffff;
+}
+
+.card-back .btn-card {
+  align-self: flex-start;
+  margin-top: 0.8rem;
+}
+
+/* 📊 STATS COMPACTAS */
+.stats-section {
+  position: relative;
+  z-index: 2;
+  max-width: 800px; /* Reducido */
+  margin: 1.5rem auto 3rem; /* Reducido */
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Reducido */
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 140px; /* Reducido */
+  padding: 1.5rem 1rem; /* Reducido */
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.stat-number {
+  font-size: 2.5rem; /* Reducido */
+  font-weight: 900;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  animation: countGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes countGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(224, 231, 255, 0.9);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* 📱 WHATSAPP COMPACTO */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 60px; /* Reducido */
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00ff88, #00ff00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Reducido */
+  text-decoration: none;
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.7), 0 0 40px rgba(0, 255, 0, 0.3);
+  z-index: 1100;
+  animation: whatsappPulse 2.5s infinite;
+}
+
+@keyframes whatsappPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7), 0 0 40px rgba(0, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 255, 0, 0.9), 0 0 50px rgba(0, 255, 0, 0.5);
+  }
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+/* 📱 RESPONSIVE MEJORADO */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.6rem 1.5rem;
+  }
+  .nav-brand h1 {
+    font-size: 1.6rem;
+  }
+  .hero-title {
+    letter-spacing: 0.08em;
+  }
+  .hero-buttons {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .stats-section {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding-top: 80px;
+  }
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+  .hero-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+  .services-grid {
+    padding: 0 1rem 2rem;
+    margin-top: 2rem;
+  }
+  .stat-item {
+    min-width: 120px;
+    padding: 1.2rem 0.8rem;
+  }
+}

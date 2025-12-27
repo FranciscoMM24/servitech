@@ -1,16 +1,25 @@
-<!-- 🔥 FORMULARIO + RESPONSABILIDAD TOTAL -->
+<!-- 🔥 FORMULARIO SOLICITUD SIMPLIFICADO - 1 CLICK -->
 <div class="form-container">
   <div class="card-servicio">
-    <h2>📋 Solicitar Servicio</h2>
+    <div class="header-gradient">
+      <h2>📋 Solicitar Servicio</h2>
+      <div class="step-indicator">
+        <div class="step active">1. Formulario</div>
+        <div class="step-connector"></div>
+        <div class="step" [class.active]="nuevaCita">2. ¡Listo!</div>
+      </div>
+    </div>
 
     <!-- 💰 PRECIO AUTOMÁTICO -->
     <div class="precio-display" *ngIf="precioSeleccionado() > 0">
       <span class="emoji">💰</span>
       <strong>${{ precioSeleccionado() }} MXN</strong>
+      <span class="label-precio">IVA Incluido</span>
     </div>
 
     <!-- 📝 FORMULARIO PRINCIPAL -->
     <form [formGroup]="formSolicitud">
+      <!-- 👤 NOMBRE COMPLETO -->
       <div class="input-group">
         <label>👤 Nombre Completo *</label>
         <input formControlName="cliente" type="text" placeholder="Juan Pérez" />
@@ -22,10 +31,17 @@
         </div>
       </div>
 
+      <!-- 📧 EMAIL + ☎️ WHATSAPP -->
       <div class="input-row">
         <div class="input-group">
           <label>📧 Email *</label>
           <input formControlName="email" type="email" placeholder="cliente@email.com" />
+          <div
+            class="error"
+            *ngIf="formSolicitud.get('email')?.invalid && formSolicitud.get('email')?.touched"
+          >
+            Email válido requerido
+          </div>
         </div>
         <div class="input-group">
           <label>📱 WhatsApp * (10 dígitos)</label>
@@ -40,31 +56,40 @@
         </div>
       </div>
 
+      <!-- 🔧 SERVICIO + 📅 FECHA -->
       <div class="input-row">
         <div class="input-group">
           <label>🔧 Servicio *</label>
           <select formControlName="servicio">
-            <option value="">Selecciona...</option>
+            <option value="">Selecciona servicio...</option>
             <option *ngFor="let servicio of servicios" [value]="servicio">{{ servicio }}</option>
           </select>
+          <div
+            class="error"
+            *ngIf="formSolicitud.get('servicio')?.invalid && formSolicitud.get('servicio')?.touched"
+          >
+            Selecciona un servicio
+          </div>
         </div>
         <div class="input-group">
-          <label>📅 Fecha *</label>
+          <label>📅 Fecha * (desde mañana)</label>
           <input formControlName="fecha" type="date" [min]="minFechaStr" />
+          <div
+            class="error"
+            *ngIf="formSolicitud.get('fecha')?.invalid && formSolicitud.get('fecha')?.touched"
+          >
+            Fecha requerida (desde mañana)
+          </div>
         </div>
       </div>
 
+      <!-- 📝 DESCRIPCIÓN DETALLADA -->
       <div class="input-group">
-        <label>🕒 Hora *</label>
-        <input formControlName="hora" type="time" />
-      </div>
-
-      <div class="input-group">
-        <label>📝 Descripción * (mínimo 10 caracteres)</label>
+        <label>📝 ¿Qué necesita reparar? * (mín. 10 caracteres)</label>
         <textarea
           formControlName="descripcion"
           rows="4"
-          placeholder="Ej: Mi laptop no enciende, hace ruido..."
+          placeholder="Ej: Mi laptop no enciende, hace ruido extraño al encender, pantalla parpadea..."
         ></textarea>
         <div
           class="error"
@@ -72,11 +97,11 @@
             formSolicitud.get('descripcion')?.invalid && formSolicitud.get('descripcion')?.touched
           "
         >
-          Descripción mínima 10 caracteres
+          Describe el problema (mínimo 10 caracteres)
         </div>
       </div>
 
-      <!-- 🚫 RESPONSABILIDAD OBLIGATORIA -->
+      <!-- 🚫 RESPONSABILIDAD LEGAL OBLIGATORIA -->
       <div class="responsabilidad-section">
         <label class="checkbox-responsabilidad">
           <input
@@ -85,76 +110,66 @@
             [ngModelOptions]="{ standalone: true }"
           />
           <span class="checkmark"></span>
-          <strong>⚠️ COMPROMISO FORMAL:</strong> Cancelaré 24h antes o pagaré 50% de multa
+          <div>
+            <strong>⚠️ COMPROMISO FORMAL:</strong><br />
+            <small>Cancelar 24h antes o pagar 50% multa</small>
+          </div>
         </label>
-        <p class="aviso-responsabilidad">
-          <strong>SIN ESTE CHECK → NO SE GENERA CÓDIGO</strong>
-        </p>
       </div>
 
-      <!-- 🔑 PASO 1: GENERAR CÓDIGO -->
+      <!-- 🎉 BOTÓN CREAR CITA DIRECTA -->
       <button
         type="button"
-        (click)="generarCodigo()"
+        (click)="crearCitaDirecta()"
         [disabled]="!formCompleto()"
         class="btn-generar"
       >
         {{
-          formCompleto() ? '🔑 GENERAR CÓDIGO VERIFICACIÓN' : '❌ Completa formulario + checkbox'
+          formCompleto() ? '🎉 CREAR CITA AUTOMÁTICA' : '⚠️ Completa todos los campos + checkbox'
         }}
       </button>
     </form>
 
-    <!-- 🔑 PASO 2: CÓDIGO VISUAL (OCULTO hasta generar) -->
-    <div class="codigo-container" *ngIf="mostrarCodigo">
-      <h3>📱 COPIA ESTE CÓDIGO:</h3>
-      <div class="codigo-grande">{{ codigoGenerado }}</div>
-      <p class="instruccion-codigo">Ingresa abajo para confirmar tu cita:</p>
-      <div class="input-codigo-group">
-        <input
-          [(ngModel)]="codigoVerificacion"
-          maxlength="4"
-          placeholder="4782"
-          class="input-codigo"
-          [ngModelOptions]="{ standalone: true }"
-        />
-        <button type="button" (click)="verificarCodigo()" class="btn-confirmar-final">
-          ✅ CONFIRMAR CITA
-        </button>
-      </div>
-    </div>
-
+    <!-- 🎉 MODAL CONFIRMACIÓN ÉXITO -->
     <div class="modal-confirmacion" *ngIf="nuevaCita">
       <div class="confirmacion-card">
-        <h2>🎉 ¡CITA RESERVADA!</h2>
+        <div class="success-icon">✅</div>
+        <h2>¡Cita Reservada Exitosamente!</h2>
 
-        <!-- 🔍 ID Y CÓDIGO GRANDES -->
+        <!-- 🔍 ID CITA PRINCIPAL -->
         <div class="id-codigo-container">
-          <div class="id-grande">
-            <span class="label-id">ID CITA</span>
+          <div class="id-card grande">
+            <span class="label">ID Cita</span>
             <strong>{{ nuevaCita.id }}</strong>
-          </div>
-          <div class="codigo-grande-final">
-            <span class="label-codigo">CÓDIGO</span>
-            <strong>{{ nuevaCita.codigoVerificacion }}</strong>
+            <span class="sub-label">Guarda este ID</span>
           </div>
         </div>
 
+        <!-- 📋 DETALLES CITA -->
         <div class="detalles-confirmacion">
-          <p>
-            👤 <strong>{{ nuevaCita.cliente }}</strong>
-          </p>
-          <p>🔧 {{ nuevaCita.servicio }}</p>
-          <p>📅 {{ nuevaCita.fecha }} {{ nuevaCita.hora }}</p>
-          <p>
-            💰 <strong>${{ nuevaCita.costo }} MXN</strong>
-          </p>
+          <div class="detalle-row">
+            <span>👤</span> <strong>{{ nuevaCita.cliente }}</strong>
+          </div>
+          <div class="detalle-row"><span>🔧</span> {{ nuevaCita.servicio }}</div>
+          <div class="detalle-row"><span>📅</span> {{ nuevaCita.fecha }}</div>
+          <div class="detalle-row precio-final">
+            <span>💰</span> <strong>${{ nuevaCita.costo }} MXN</strong>
+          </div>
         </div>
-        <p class="instruccion">
-          🔍 <strong>GUARDAR ID</strong> para rastrear en
-          <a routerLink="/cliente/citas" class="link-citas">Mis Citas</a>
-        </p>
-        <button type="button" (click)="irMisCitas()" class="btn-ir-citas">📅 Ver Mis Citas</button>
+
+        <!-- 📱 FEEDBACK WHATSAPP -->
+        <div class="whatsapp-feedback-modal" *ngIf="whatsappEnviado">
+          📱 Confirmación enviada a WhatsApp
+        </div>
+
+        <!-- 🔗 INSTRUCCIÓN RASTREO -->
+        <div class="instruccion-rastreo">
+          <p>🔍 <strong>Usa este ID</strong> para rastrear tu cita en:</p>
+          <a routerLink="/cliente/citas" class="link-citas">📋 Mis Citas</a>
+        </div>
+
+        <!-- 🚀 BOTÓN FINAL -->
+        <button (click)="irMisCitas()" class="btn-ir-citas">📋 Ver Mis Citas</button>
       </div>
     </div>
   </div>
