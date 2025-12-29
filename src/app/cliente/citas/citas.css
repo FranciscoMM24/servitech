@@ -1,35 +1,89 @@
-/* 🔥 CITAS TRACKER - CSS COMPLETO RESPONSIVO */
+/* 🔥 CITAS TRACKER - ROJO-NEGRO TECH 100vh */
 * {
   box-sizing: border-box;
 }
 
-.citas-container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* 🔍 TRACKER SECTION */
+body {
+  font-family: 'Orbitron', 'Segoe UI', monospace;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 0, 5, 0.98) 0%,
+    rgba(42, 10, 16, 0.95) 50%,
+    rgba(15, 15, 26, 0.92) 100%
+  );
+  color: #ffffff;
+}
+
+/* 🔑 NAV SINCROMIZADO */
+.navbar {
+  height: clamp(70px, 12vh, 90px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.citas-container {
+  height: 100vh;
+  padding-top: clamp(70px, 12vh, 90px);
+  padding-bottom: clamp(70px, 12vh, 90px);
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-image: linear-gradient(rgba(255, 50, 100, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 50, 100, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: matrixBg 20s linear infinite;
+}
+
+@keyframes matrixBg {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 🔍 TRACKER SECTION - FLEX 1 */
 .tracker-section {
-  background: rgba(255, 255, 255, 0.95);
+  flex: 1;
+  background: rgba(26, 0, 5, 0.95);
+  backdrop-filter: blur(20px);
   border-radius: 24px;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 50, 100, 0.2);
+  border: 1px solid rgba(255, 50, 100, 0.3);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 .tracker-section h3 {
-  color: #1e293b;
+  color: #ffffff;
   font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* BUSCADOR */
+/* BUSCADOR ROJO-NEGRO */
 .buscador-publico {
   display: flex;
   max-width: 450px;
@@ -40,41 +94,52 @@
 .input-tracker {
   flex: 1;
   padding: 1.2rem 1.5rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid rgba(255, 50, 100, 0.3);
   border-radius: 16px;
   font-size: 1.1rem;
-  background: #fafbfc;
+  background: rgba(42, 10, 16, 0.85);
+  color: #ffffff;
   transition: all 0.3s;
   font-family: inherit;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.input-tracker::placeholder {
+  color: rgba(255, 209, 220, 0.6);
 }
 
 .input-tracker:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  border-color: #ff3264;
+  box-shadow: 0 0 0 4px rgba(255, 50, 100, 0.2), 0 8px 25px rgba(255, 50, 100, 0.3);
+  background: rgba(42, 10, 16, 0.95);
 }
 
 .btn-buscar-mini {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  color: white;
+  background: linear-gradient(135deg, #ff3264, #c81e50);
+  color: #ffffff;
   border: none;
   padding: 1.2rem 1.5rem;
   border-radius: 16px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
   transition: all 0.3s;
   min-width: 60px;
+  box-shadow: 0 8px 25px rgba(255, 50, 100, 0.4);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .btn-buscar-mini:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 12px 30px rgba(255, 50, 100, 0.6);
 }
 
 /* RESULTADO CITA */
 .cita-publica-resultado {
-  margin-top: 3rem;
+  margin-top: 2rem;
   animation: slideIn 0.4s ease-out;
 }
 
@@ -90,58 +155,72 @@
 }
 
 .cita-card-tracker {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: rgba(42, 10, 16, 0.95);
+  backdrop-filter: blur(15px);
   border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 50, 100, 0.2);
+  border: 1px solid rgba(255, 50, 100, 0.3);
   text-align: left;
 }
 
 .cita-card-tracker h4 {
   margin: 0 0 1.5rem 0;
-  color: #1e293b;
-  font-size: 1.6rem;
-  font-weight: 800;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .cita-card-tracker p {
   margin: 1rem 0;
-  color: #475569;
-  font-size: 1.1rem;
+  color: #ffd1dc;
+  font-size: 1rem;
 }
 
 .cita-card-tracker p strong {
-  color: #1e293b;
-  font-weight: 700;
+  color: #ffffff;
+  font-weight: 800;
 }
 
-/* ESTADO BADGE */
+/* ESTADO BADGES ROJO-NEGRO */
 .estado-badge {
   display: inline-block;
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   margin-top: 1rem;
+  letter-spacing: 0.5px;
 }
 
 .estado-pendiente {
-  background: #fef3c7;
-  color: #92400e;
+  background: linear-gradient(135deg, rgba(255, 100, 120, 0.2), rgba(255, 50, 100, 0.15));
+  color: #ff647a;
+  border: 1px solid rgba(255, 100, 120, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 50, 100, 0.2);
 }
+
 .estado-confirmada {
-  background: #dcfce7;
-  color: #166534;
+  background: linear-gradient(135deg, rgba(255, 100, 120, 0.25), rgba(255, 50, 100, 0.2));
+  color: #ff647a;
+  border: 1px solid rgba(255, 100, 120, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 50, 100, 0.3);
 }
+
 .estado-completada {
-  background: #d1fae5;
-  color: #065f46;
+  background: linear-gradient(135deg, rgba(255, 164, 122, 0.3), rgba(255, 100, 120, 0.25));
+  color: #ff647a;
+  border: 1px solid rgba(255, 100, 120, 0.6);
+  box-shadow: 0 4px 15px rgba(255, 50, 100, 0.4);
 }
+
 .estado-cancelada {
-  background: #fee2e2;
-  color: #991b1b;
+  background: linear-gradient(135deg, rgba(255, 50, 100, 0.2), rgba(200, 30, 80, 0.15));
+  color: #ff647a;
+  border: 1px solid rgba(255, 50, 100, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 50, 100, 0.2);
 }
 
 /* ❌ NO ENCONTRADO */
@@ -152,44 +231,57 @@
 .cita-card-tracker .icono-vacio {
   font-size: 4rem;
   margin-bottom: 1.5rem;
-  opacity: 0.5;
+  opacity: 0.6;
+  color: #ff647a;
 }
 
 .cita-card-tracker h4.vacio-title {
-  color: #64748b;
+  color: #ffd1dc;
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
 
 .cita-card-tracker p.vacio-text {
-  color: #94a3b8;
+  color: rgba(255, 209, 220, 0.8);
   margin-bottom: 2rem;
 }
 
 /* BOTÓN NUEVA BÚSQUEDA */
 .btn-buscar-nuevo {
-  background: linear-gradient(135deg, #6b7280, #4b5563);
-  color: white;
+  background: linear-gradient(135deg, #ff3264, #c81e50);
+  color: #ffffff;
   border: none;
   padding: 1rem 2rem;
   border-radius: 16px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   transition: all 0.3s;
   width: 100%;
   max-width: 250px;
+  box-shadow: 0 8px 25px rgba(255, 50, 100, 0.4);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .btn-buscar-nuevo:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(107, 114, 128, 0.3);
+  box-shadow: 0 12px 30px rgba(255, 50, 100, 0.6);
 }
 
 /* 📱 RESPONSIVO */
+@media (min-width: 480px) {
+  .citas-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .citas-container {
-    padding: 1.5rem 1rem;
+    padding-top: clamp(65px, 11vh, 85px);
+    padding-bottom: clamp(65px, 11vh, 85px);
   }
   .tracker-section {
     padding: 2rem 1.5rem;
@@ -202,15 +294,24 @@
     width: 100%;
   }
   .cita-card-tracker {
-    padding: 2rem 1.5rem;
+    padding: 1.8rem 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .citas-container {
+    padding-top: clamp(60px, 10vh, 80px);
+    padding-bottom: clamp(60px, 10vh, 80px);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .tracker-section {
+    padding: 1.5rem 1.2rem;
+  }
   .tracker-section h3 {
     font-size: 1.4rem;
   }
   .cita-card-tracker h4 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
