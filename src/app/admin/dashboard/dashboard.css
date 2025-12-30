@@ -1,395 +1,604 @@
-/* 🔥 DASHBOARD ADMIN - CSS COMPLETO Y RESPONSIVO */
+/* 🌌 ADMIN DASHBOARD CYBER ORBIT - 100vh SINCROMIZADO */
 * {
   box-sizing: border-box;
-}
-
-.login-modal {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
-}
-
-.login-card {
-  background: rgba(255, 255, 255, 0.98);
-  padding: 3rem 2.5rem;
-  border-radius: 24px;
-  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-}
-.login-card h3 {
-  color: #1e293b;
-  margin-bottom: 2rem;
-  font-size: 1.9rem;
-  font-weight: 800;
-}
-.input-password {
-  width: 100%;
-  padding: 1.3rem 1.6rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 16px;
-  font-size: 1.1rem;
-  background: #fafbfc;
-  transition: all 0.3s;
-  font-family: inherit;
-}
-.input-password:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-}
-.login-actions {
-  display: flex;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-}
-.btn-login,
-.btn-cancelar {
-  flex: 1;
-  border: none;
-  padding: 1.2rem;
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.btn-login {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-.btn-cancelar {
-  background: linear-gradient(135deg, #64748b, #475569);
-  color: white;
-}
-
-/* DASHBOARD PRINCIPAL */
-.dashboard-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: clamp(1rem, 3vw, 2rem);
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  min-height: 100vh;
-}
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.dashboard-header h2 {
-  color: #1e293b;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 800;
   margin: 0;
-}
-.btn-logout {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 16px;
-  cursor: pointer;
-  font-weight: 700;
+  padding: 0;
 }
 
-/* ESTADÍSTICAS */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-.stat-card {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2.5rem 2rem;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  transition: all 0.3s;
-}
-.stat-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-}
-.stat-card h3 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 900;
-  margin-bottom: 0.8rem;
-}
-.stat-card.total h3 {
-  color: #3b82f6;
-}
-.stat-card.pendientes h3 {
-  color: #f59e0b;
-}
-.stat-card.ingresos h3 {
-  color: #10b981;
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* MODAL EDICIÓN */
-.modal-edicion {
+body {
+  font-family: 'Orbitron', monospace;
+  background: radial-gradient(circle at 20% 30%, #0a0a2e 0%, #1a0033 30%, #000428 70%, #000 100%);
+  color: #00f5ff;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.06) 0%, transparent 50%);
+  animation: cosmicPulse 20s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* ANIMACIONES CYBER */
+@keyframes cosmicPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+@keyframes matrixBg {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes cyberGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 🔑 NAV SINCROMIZADO */
+.navbar {
+  height: clamp(55px, 9vh, 75px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* 🌌 CONTAINERS PRINCIPALES - CENTRADOS */
+.dashboard-container,
+.login-modal {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  padding: clamp(65px, 11vh, 90px) clamp(1rem, 3vw, 3rem);
+  margin: 0 auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 3vh, 2rem);
+  background-image: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  box-sizing: border-box;
+}
+
+/* 🔐 LOGIN MODAL CYBER */
+.login-modal {
+  background: rgba(0, 20, 60, 0.98);
+  backdrop-filter: blur(25px);
+  z-index: 2000;
+}
+
+.login-card {
+  background: rgba(0, 20, 60, 0.98);
+  backdrop-filter: blur(30px);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 6vh, 3.5rem) clamp(2rem, 5vw, 2.5rem);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 255, 255, 0.4);
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  max-width: clamp(380px, 90vw, 450px);
+  width: 95%;
+  text-align: center;
+  color: #00f5ff;
+  margin: 0 auto;
+}
+
+.login-card h3 {
+  font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+  font-weight: 900;
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  text-shadow: 0 3px 15px rgba(0, 255, 255, 0.6);
+  background: linear-gradient(45deg, #00f5ff, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.input-password {
+  width: 100%;
+  padding: clamp(1rem, 2.5vh, 1.3rem) clamp(1.5rem, 4vw, 1.8rem);
+  border: 2px solid rgba(0, 255, 255, 0.45);
+  border-radius: 20px;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  background: rgba(0, 20, 60, 0.92);
+  color: #00f5ff;
+  margin-bottom: clamp(1.8rem, 4vh, 2.5rem);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  font-family: 'Orbitron', monospace;
+}
+
+.input-password::placeholder {
+  color: rgba(0, 245, 255, 0.55);
+}
+
+.input-password:focus {
+  outline: none;
+  border-color: #00f5ff;
+  box-shadow: 0 0 0 5px rgba(0, 255, 255, 0.3), 0 18px 45px rgba(0, 255, 255, 0.35);
+  transform: translateY(-3px);
+  background: rgba(0, 20, 60, 0.99);
+}
+
+.login-actions {
+  display: flex;
+  gap: clamp(0.8rem, 2vw, 1rem);
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-login,
+.btn-cancelar {
+  padding: clamp(0.9rem, 2.2vh, 1.2rem) clamp(1.5rem, 4vw, 2.2rem);
+  border: none;
+  border-radius: 20px;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  flex: 1;
+  max-width: 160px;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, #00f5ff, #0099cc);
+  color: #000;
+  box-shadow: 0 15px 40px rgba(0, 245, 255, 0.5);
+}
+
+.btn-cancelar {
+  background: rgba(0, 245, 255, 0.2);
+  color: #00f5ff;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
+}
+
+.btn-login:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 25px 55px rgba(0, 255, 255, 0.7);
+}
+
+.btn-cancelar:hover {
+  background: rgba(0, 245, 255, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ⚙️ DASHBOARD HEADER CYBER */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #00f5ff, #0099cc);
+  padding: clamp(1.2rem, 3vh, 1.8rem) clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 24px;
+  color: #000;
+  box-shadow: 0 15px 45px rgba(0, 245, 255, 0.5);
+  width: 100%;
+  max-width: clamp(500px, 90vw, 800px);
+  margin: 0 auto;
+}
+
+.dashboard-header h2 {
+  font-size: clamp(1.4rem, 3.8vw, 2rem);
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-logout {
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: clamp(0.7rem, 1.8vh, 1rem) clamp(1.2rem, 3vw, 1.8rem);
+  border-radius: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.4s;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+/* 📊 STATS GRID CYBER */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.2rem, 3vh, 1.8rem);
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  width: 100%;
+  max-width: clamp(500px, 90vw, 800px);
+}
+
+.stat-card {
+  background: rgba(0, 20, 60, 0.95);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vh, 2.2rem);
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 255, 255, 0.3);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 255, 255, 0.4);
+}
+
+.stat-card h3 {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 900;
+  margin: 0 0 clamp(0.5rem, 1.5vh, 1rem) 0;
+  background: linear-gradient(45deg, #00f5ff, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 15px rgba(0, 255, 255, 0.6);
+}
+
+.stat-card p {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: rgba(0, 245, 255, 0.9);
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ✏️ MODAL EDICIÓN CYBER */
+.modal-edicion {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 20, 60, 0.98);
+  backdrop-filter: blur(30px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-}
-.modal-content {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 20px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-}
-.modal-content h3 {
-  margin-bottom: 1.5rem;
-  color: #1e293b;
-}
-.modal-content textarea {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 1rem;
-  resize: vertical;
-  min-height: 120px;
-}
-.modal-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-.btn-guardar {
-  flex: 1;
-  background: #10b981;
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
+  z-index: 3000;
 }
 
-/* ✅ TABLA 8 COLUMNAS RESPONSIVE */
-.tabla-container {
-  background: rgba(255, 255, 255, 0.9);
+.modal-content {
+  background: rgba(0, 20, 60, 0.98);
+  border-radius: 32px;
+  padding: clamp(2rem, 5vh, 3rem) clamp(1.8rem, 5vw, 2.8rem);
+  max-width: clamp(450px, 90vw, 550px);
+  width: 95%;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.95), 0 0 60px rgba(0, 255, 255, 0.5);
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  color: #00f5ff;
+  margin: 0 auto;
+}
+
+.modal-content h3 {
+  font-size: clamp(1.4rem, 3.8vw, 1.8rem);
+  font-weight: 900;
+  margin-bottom: clamp(1.2rem, 3vh, 2rem);
+  text-shadow: 0 3px 15px rgba(0, 255, 255, 0.6);
+}
+
+.modal-content textarea {
+  width: 100%;
+  padding: clamp(1rem, 2.5vh, 1.3rem);
+  border: 2px solid rgba(0, 255, 255, 0.45);
+  border-radius: 20px;
+  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+  background: rgba(0, 20, 60, 0.92);
+  color: #00f5ff;
+  resize: vertical;
+  min-height: 140px;
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  font-family: 'Orbitron', monospace;
+}
+
+.modal-content textarea::placeholder {
+  color: rgba(0, 245, 255, 0.55);
+}
+
+.modal-content textarea:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 0 5px rgba(0, 255, 255, 0.3), 0 18px 45px rgba(0, 255, 255, 0.35);
+}
+
+.modal-actions {
+  display: flex;
+  gap: clamp(0.8rem, 2vw, 1rem);
+  justify-content: flex-end;
+}
+
+.btn-guardar {
+  background: linear-gradient(135deg, #00f5ff, #0099cc);
+  color: #000;
+  padding: clamp(1rem, 2.5vh, 1.3rem) clamp(1.8rem, 4.5vw, 2.5rem);
+  border: none;
   border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 15px 40px rgba(0, 245, 255, 0.5);
+  transition: all 0.4s;
 }
+
+.btn-guardar:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 25px 55px rgba(0, 255, 255, 0.7);
+}
+
+/* 📋 TABLA CYBER - CENTRADA */
+.tabla-container {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  max-width: clamp(600px, 95vw, 1000px);
+  margin: 0 auto;
+}
+
 .tabla-container h3 {
-  color: #1e293b;
-  margin-bottom: 2rem;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  font-weight: 900;
+  margin-bottom: clamp(1.2rem, 3vh, 2rem);
+  color: #00f5ff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  text-shadow: 0 2px 12px rgba(0, 255, 255, 0.5);
 }
+
 .contador {
-  font-size: 1.1rem;
-  color: #64748b;
+  color: #00ffcc;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  font-weight: 800;
 }
 
 .tabla {
-  overflow-x: auto;
-  border-radius: 20px;
+  background: rgba(0, 20, 60, 0.95);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 255, 255, 0.3);
 }
 
-/* ✅ HEADER 8 COLUMNAS */
 .tabla-header {
-  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-  padding: 1.5rem 1.5rem;
-  font-weight: 800;
-  color: #374151;
   display: grid;
-  grid-template-columns: 110px 75px 160px 180px 130px 90px 100px 200px; /* ✅ 8 COLUMNAS */
-  gap: 0.5rem;
-  font-size: 0.85rem;
+  grid-template-columns: 80px 100px 1fr 1fr 1fr 100px 120px 120px;
+  padding: clamp(1rem, 2.5vh, 1.5rem) clamp(1.2rem, 3vw, 1.8rem);
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 255, 0.15));
+  border-bottom: 2px solid rgba(0, 255, 255, 0.4);
+  font-weight: 900;
+  color: rgba(0, 245, 255, 0.95);
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* ✅ FILAS 8 COLUMNAS */
+.tabla-header span {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
 .tabla-row {
-  padding: 1.5rem 1.5rem;
   display: grid;
-  grid-template-columns: 110px 75px 160px 180px 130px 90px 100px 200px; /* ✅ MISMO ORDEN */
-  gap: 0.5rem;
-  border-bottom: 1px solid #f1f5f9;
-  transition: all 0.2s;
-  font-size: 0.92rem;
+  grid-template-columns: 80px 100px 1fr 1fr 1fr 100px 120px 120px;
+  padding: clamp(1rem, 2.5vh, 1.3rem) clamp(1.2rem, 3vw, 1.8rem);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+  transition: all 0.3s;
+  color: #00f5ff;
 }
+
 .tabla-row:hover {
-  background: rgba(59, 130, 246, 0.05);
+  background: rgba(0, 245, 255, 0.1);
+  transform: scale(1.01);
 }
+
 .tabla-row:last-child {
   border-bottom: none;
 }
 
-/* ✅ CLASES ESPECÍFICAS COLUMNAS */
-.id {
-  font-weight: 800;
-  color: #1e293b;
-}
-.codigo {
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-align: center;
-}
-.cliente {
-  font-weight: 600;
-  color: #1e293b;
-}
-.servicio {
-  color: #059669;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.fecha {
-  color: #64748b;
-  font-size: 0.9rem;
-}
-.precio {
-  font-weight: 800;
-  color: #059669;
-  font-size: 1.15rem;
-}
-
-/* ESTADOS */
-.estado {
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.estado.pendiente {
-  background: #fef3c7;
-  color: #92400e;
-}
-.estado.confirmada {
-  background: #dcfce7;
-  color: #166534;
-}
-.estado.completada {
-  background: #d1fae5;
-  color: #065f46;
-}
-.estado.cancelada {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* 🔥 BOTONES ACCIONES */
-.acciones {
-  display: flex;
-  gap: 0.3rem;
-  flex-wrap: nowrap;
-}
-.acciones button {
-  border: none;
-  padding: 0;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  transition: all 0.3s;
-  width: 38px;
-  height: 38px;
+.tabla-row span {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
-.acciones button:hover {
-  transform: scale(1.15);
+
+.id {
+  font-weight: 900;
+  color: #00f5ff;
+}
+.codigo {
+  font-family: monospace;
+  color: rgba(0, 245, 255, 0.9);
+}
+.cliente {
+  font-weight: 700;
+}
+.servicio {
+  color: #00ffcc;
+}
+.fecha {
+  font-family: monospace;
+  color: #ff00ff;
+}
+.precio {
+  font-weight: 900;
+  color: #00ffcc;
+}
+
+.estado {
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+  border-radius: 20px;
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.6px;
+}
+
+.estado.pendiente {
+  background: rgba(0, 245, 255, 0.2);
+  color: #00f5ff;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+}
+.estado.confirmada {
+  background: rgba(0, 255, 200, 0.25);
+  color: #00ffcc;
+  border: 2px solid rgba(0, 255, 200, 0.6);
+}
+.estado.completada {
+  background: rgba(0, 255, 200, 0.35);
+  color: #00ffcc;
+  border: 2px solid rgba(0, 255, 200, 0.7);
+}
+.estado.cancelada {
+  background: rgba(255, 0, 255, 0.2);
+  color: #ff00ff;
+  border: 2px solid rgba(255, 0, 255, 0.5);
+}
+
+/* ACCIONES BOTONES CYBER */
+.acciones {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.btn-pagar,
+.btn-confirmar,
+.btn-completado,
+.btn-cancelar-wa,
+.btn-email,
+.btn-editar,
+.btn-eliminar {
+  width: clamp(38px, 9vw, 42px);
+  height: clamp(38px, 9vw, 42px);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .btn-pagar {
-  background: #10b981;
-  color: white;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  color: #000;
 }
 .btn-confirmar {
-  background: #3b82f6;
-  color: white;
+  background: linear-gradient(135deg, #00f5ff, #0099cc);
+  color: #000;
 }
 .btn-completado {
-  background: #f59e0b;
-  color: white;
+  background: linear-gradient(135deg, #ffaa00, #ff8800);
+  color: #000;
 }
 .btn-cancelar-wa {
-  background: #f97316;
-  color: white;
+  background: linear-gradient(135deg, #ff4444, #ff2222);
+  color: #fff;
 }
 .btn-email {
-  background: #6b7280;
-  color: white;
+  background: rgba(0, 255, 255, 0.2);
+  color: #00f5ff;
+  border: 2px solid rgba(0, 255, 255, 0.5);
 }
 .btn-editar {
-  background: #8b5cf6;
-  color: white;
+  background: rgba(0, 255, 128, 0.2);
+  color: #00ff88;
+  border: 2px solid rgba(0, 255, 128, 0.5);
 }
 .btn-eliminar {
-  background: #ef4444;
-  color: white;
+  background: rgba(255, 64, 128, 0.2);
+  color: #ff4080;
+  border: 2px solid rgba(255, 64, 128, 0.5);
 }
 
-/* 📱 RESPONSIVO */
-@media (max-width: 1200px) {
+.btn-pagar:hover,
+.btn-confirmar:hover,
+.btn-completado:hover,
+.btn-cancelar-wa:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+}
+
+/* 📱 RESPONSIVO PERFECTO */
+@media (max-width: 768px) {
+  .dashboard-container,
+  .login-modal {
+    padding: clamp(60px, 10vh, 80px) clamp(1.2rem, 3.5vw, 2rem);
+  }
   .tabla-header,
   .tabla-row {
-    grid-template-columns: 100px 70px 140px 160px 120px 85px 95px 180px;
+    grid-template-columns: 70px 1fr 1fr 120px 120px;
+  }
+  .tabla-header span:nth-child(2),
+  .tabla-row span:nth-child(2) {
+    display: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: 1fr;
   }
   .tabla-header,
   .tabla-row {
-    grid-template-columns: 90px 65px 1fr 1fr 110px 80px 1fr;
-    gap: 0.4rem;
-    font-size: 0.85rem;
-    padding: 1.2rem 1rem;
+    grid-template-columns: 60px 1fr 100px 100px;
   }
-  .tabla-header span:nth-child(7),
-  .tabla-row span:nth-child(7) {
+  .tabla-header span:nth-child(3),
+  .tabla-row span:nth-child(3) {
     display: none;
-  } /* Ocultar Estado móvil */
-  .acciones button {
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 480px) {
-  .tabla-header,
-  .tabla-row {
-    grid-template-columns: 80px 60px 1fr 1fr 1fr;
-  }
-  .tabla-header span:nth-child(6),
-  .tabla-row span:nth-child(6),
-  .tabla-header span:nth-child(7),
-  .tabla-row span:nth-child(7) {
-    display: none;
+@media (max-height: 700px) {
+  .dashboard-container,
+  .login-modal {
+    justify-content: flex-start;
+    padding-top: clamp(75px, 13vh, 100px);
   }
 }
